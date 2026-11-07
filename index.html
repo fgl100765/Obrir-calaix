@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kassenschublade Öffnen</title>
+    <title>Obrir calaix</title>
 
     <style>
         body {
@@ -89,7 +89,7 @@
     </button>
 
     <div class="status" id="statusField">
-        Si us plau, introduïu el vostre codi PIN!
+        Si us plau, introduïu el teu codi PIN!
     </div>
 
     <script>
@@ -127,7 +127,7 @@
                 if (this.value === PIN_CODE) {
 
                     status.innerHTML =
-                        "✅ Code korrekt! Kassenschublade wird geöffnet...";
+                        "✅ Codi PIN correcte! El calaix portamonedes s'està obrint...";
 
                     pinInput.disabled = true;
 
@@ -136,7 +136,7 @@
                 } else {
 
                     status.innerHTML =
-                        "❌ Falscher Code! Bitte erneut versuchen.";
+                        "❌ Codi incorrecte! Si us plau, torneu-ho a provar.";
 
                     pinInput.value = "";
 
@@ -177,7 +177,7 @@
                 if (!port) {
 
                     status.innerHTML =
-                        "Bitte Drucker auswählen...";
+                        "Si us plau, seleccioneu una impressora...";
 
                     port = await navigator.serial.requestPort({
                         filters: [{
@@ -189,14 +189,14 @@
                 }
 
                 status.innerHTML =
-                    "Verbindung wird hergestellt...";
+                    "S'està establint la connexió...";
 
                 await port.open({
                     baudRate: 9600
                 });
 
                 status.innerHTML =
-                    "Öffnungsimpuls wird gesendet...";
+                    "S'està enviant l'impuls d'obertura...";
 
                 const writer = port.writable.getWriter();
 
@@ -213,7 +213,7 @@
                 await port.close();
 
                 status.innerHTML =
-                    "✅ Kassenschublade geöffnet!";
+                    "✅ Calaix obert!";
 
                 status.className = "status";
 
